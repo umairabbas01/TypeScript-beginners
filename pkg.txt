@@ -1,0 +1,23 @@
+extension
+1. JavaScript and TypeScript Nightly
+
+
+pkg
+npm i typescript -g
+tsc index.ts // run the typescript program
+npm ts-node -g
+npm install -g ts-node
+npm i ts -node -g  // this pkg is directly run typescript
+ ts-node ts/index.ts
+
+
+Transplication: high to high level convert
+Broswers can not directly execute TypeScript code, so it needs to be converted into JavaScript. The process is called Transplication.
+
+Key Reasons:
+  JavaScript Compatibility
+  Cross-Platform Execution 
+  Leverging Js libraries
+  Backend Compatibility
+  Type Safety without Runtime Charges
+

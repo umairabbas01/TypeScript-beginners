@@ -54,9 +54,9 @@ numVal = 1;
 numVal = 'a';
 
 
-function testAnyType(val: any){
-    // console.log(val);   
-}
+// function testAnyType(val: any){
+//     // console.log(val);   
+// }
 
 
 
@@ -90,9 +90,9 @@ enum Color {
     Blue = 'blue'
 }
 // console.log(Color.APP_NAME);
-console.log(Color.Blue);
+// console.log(Color.Blue);
 let color: Color = Color.Green
-console.log(color);
+// console.log(color);
 
 
 enum Size {
@@ -119,7 +119,7 @@ if(typeof(notSure)==='number'){
 function infiniteLoop(): never {
     while(true){
         // do something endlessly
-        console.log(1);
+        // console.log(1);
         
     }
 }
@@ -134,6 +134,137 @@ function throwError(message: string):never {
 // void type
 function logMessage(message: string): void {
     console.log(message);
-    // return null;
-if(message) return 0;
+    // return undefined;
 }
+
+
+// type interference
+let username = 'umi'; // typescript interfers the as string
+
+// type assertions
+let someValue = "Hello World!";
+let strlength: number = (someValue as string).length 
+// console.log(strlength);
+
+
+// union types      |
+let id: string | number | boolean;    // id can either be string or a number 
+id = 'abc';
+id = 101;
+id = true;
+
+
+function printId(id: string | number){
+    console.log(`id: ${id}`);     //    
+}
+// printId('id');
+// printId(101);
+
+// type narrowing 
+function printIdFn(id: string | number){
+    if(typeof id === 'string'){
+        console.log('id is a string: ', id.toUpperCase());  
+    }else{
+        console.log(`id: ${id}`);
+        
+    }
+}
+// printIdFn('xyz')
+
+
+
+// Interface
+
+// interface Person {
+//     name: string;
+//     age: number;
+
+//     // greet(): void
+// }
+// let person: Person = {
+//     name: 'abc',
+//     age: 10,
+//     greet(){
+//         console.log('Hi');
+        
+//     }
+// }
+// person.greet();
+
+
+
+// interface with Function types   // it is not convert in to js
+interface MathOp {
+    (a: number, b: number): number;
+}
+const add: MathOp = (x,y)=> x + y;
+const sub: MathOp = (x,y)=> x -y;
+
+// console.log('add two numbers: ', add(1,2));
+// console.log('substract two numbers: ', sub(5,4));
+
+// type alias
+// type AliasName = TypeDefination;   // syntax
+
+type UserID = string;
+let iserId: UserID = ' abc';
+type Person1 = {
+    name: string;
+    age: number;
+};
+let person1: Person1 = {
+    name: "abc",
+    age: 12
+}
+console.log(person1.name);
+
+type ID = string | number;
+let userId1: ID = 'abc';
+let orderId: ID = 5;
+
+
+
+
+//  interface  vs  type alias
+interface User {
+    name: string,
+    phone: number
+}
+
+interface Customer extends User{                            // extend user it used to interface user
+    address: string;
+
+}
+let myCustomer: Customer ={
+    name: 'X',
+    phone: 123456,
+    address: 'abc'
+}
+type Vehical = {
+    make: string,
+    model: string
+}
+
+
+// & -> Intersection-Types
+type Car = Vehical & {
+    isElectric: boolean
+}
+
+//  error duplicate type identifier
+
+
+let myCar: Car = {
+    make: "marotui",
+    model: "tata",
+    isElectric: true
+}
+
+type MathOp1 = (a: number, b: number)=> number;
+let add1: MathOp1 = (x,y)=> x + y
+console.log(add1(2,2));
+
+
+
+type Status = 'active' | 'inactives' | 'pending'
+let userStatus: Status = 'active'
